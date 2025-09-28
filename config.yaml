@@ -1,0 +1,40 @@
+# VietLLMDataset Configuration
+
+# Model Configuration
+model:
+  name: "Tencent-Hunyuan/Hunyuan-MT"
+  batch_size: 4
+  max_length: 512
+  device: "auto"  # auto, cuda, cpu
+
+# Dataset Configuration
+datasets:
+  gpqa:
+    subset: "gpqa_main"  # gpqa_main, gpqa_extended, gpqa_diamond
+    translatable_fields: ["questions", "choices", "explanations"]
+    sample_size: null  # null for all data, number for sample
+  
+  aime:
+    year: 2025
+    translatable_fields: ["problems", "solutions"]
+    sample_size: null
+
+# Translation Configuration
+translation:
+  source_language: "en"
+  target_language: "vi"
+  save_intermediate: true
+  batch_processing: true
+
+# Output Configuration
+output:
+  base_dir: "output"
+  formats: ["json", "csv"]  # json, csv, jsonl
+  include_metadata: true
+  generate_reports: true
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  console_output: true
+  log_file: "logs/translation.log"
