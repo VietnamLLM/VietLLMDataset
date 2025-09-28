@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Example script for translating GPQA dataset from English to Vietnamese
-using Hunyuan-MT model
+using local Hunyuan-MT-Chimera-7B-fp8 model
 """
 
 import sys
@@ -32,9 +32,9 @@ def main():
     
     try:
         # Initialize components
-        print("📦 Initializing Hunyuan-MT translator...")
+        print("📦 Initializing Hunyuan-MT-Chimera-7B-fp8 translator from local weights...")
         translator = HunyuanTranslator(
-            model_name="Tencent-Hunyuan/Hunyuan-MT",  # You may need to adjust this
+            model_name="./weight/Hunyuan-MT-Chimera-7B-fp8",  # Local model path
             batch_size=2,  # Small batch size for demo
             max_length=512
         )

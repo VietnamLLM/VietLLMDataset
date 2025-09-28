@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Simple demonstration of Hunyuan-MT translation functionality
+Simple demonstration of Hunyuan-MT-Chimera-7B-fp8 translation functionality using local weights
 """
 
 import sys
@@ -15,8 +15,8 @@ from translation.hunyuan_translator import HunyuanTranslator
 def main():
     """Simple translation demo"""
     
-    print("🚀 Hunyuan-MT Translation Demo")
-    print("=" * 40)
+    print("🚀 Hunyuan-MT-Chimera-7B-fp8 Translation Demo")
+    print("=" * 50)
     
     # Example texts to translate
     sample_texts = [
@@ -28,11 +28,11 @@ def main():
     ]
     
     try:
-        print("📦 Loading Hunyuan-MT model...")
-        print("Note: This will download the model if not cached locally")
+        print("📦 Loading Hunyuan-MT-Chimera-7B-fp8 model from local weights...")
+        print("Note: Using local model weights from ./weight/Hunyuan-MT-Chimera-7B-fp8")
         
         translator = HunyuanTranslator(
-            model_name="Tencent-Hunyuan/Hunyuan-MT",
+            model_name="./weight/Hunyuan-MT-Chimera-7B-fp8",
             batch_size=2,
             max_length=256
         )

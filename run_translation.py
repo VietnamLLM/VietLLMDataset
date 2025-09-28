@@ -22,19 +22,19 @@ def main():
     """Main function with CLI arguments"""
     
     parser = argparse.ArgumentParser(
-        description="Translate datasets from English to Vietnamese using Hunyuan-MT"
+        description="Translate datasets from English to Vietnamese using local Hunyuan-MT-Chimera-7B-fp8"
     )
     
     parser.add_argument(
         "dataset",
         choices=["gpqa", "aime", "demo"],
-        help="Dataset to translate"
+        help="Dataset to translate using Hunyuan-MT-Chimera-7B-fp8"
     )
     
     parser.add_argument(
         "--model-name",
-        default="Tencent-Hunyuan/Hunyuan-MT",
-        help="Hunyuan-MT model name/path"
+        default="./weight/Hunyuan-MT-Chimera-7B-fp8",
+        help="Hunyuan-MT-Chimera-7B-fp8 local model path"
     )
     
     parser.add_argument(
@@ -113,7 +113,7 @@ def main():
     
     try:
         # Initialize translator
-        print("📦 Initializing Hunyuan-MT translator...")
+        print("📦 Initializing Hunyuan-MT-Chimera-7B-fp8 translator from local weights...")
         translator = HunyuanTranslator(
             model_name=args.model_name,
             device=args.device if args.device != "auto" else None,

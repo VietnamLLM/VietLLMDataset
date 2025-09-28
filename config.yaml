@@ -2,7 +2,7 @@
 
 # Model Configuration
 model:
-  name: "Tencent-Hunyuan/Hunyuan-MT"
+  name: "./weight/Hunyuan-MT-Chimera-7B-fp8"
   batch_size: 4
   max_length: 512
   device: "auto"  # auto, cuda, cpu

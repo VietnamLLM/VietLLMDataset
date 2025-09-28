@@ -131,10 +131,10 @@ print(translated['problems_vi'][0])
 
 ```python
 translator = HunyuanTranslator(
-    model_name="Tencent-Hunyuan/Hunyuan-MT",  # Model path/name
-    device="cuda",                            # cuda, cpu, auto
-    batch_size=4,                            # Batch size for processing
-    max_length=512                           # Maximum sequence length
+    model_name="./weight/Hunyuan-MT-Chimera-7B-fp8",  # Local model path
+    device="cuda",                                    # cuda, cpu, auto
+    batch_size=4,                                    # Batch size for processing
+    max_length=512                                   # Maximum sequence length
 )
 ```
 
@@ -308,7 +308,7 @@ except Exception as e:
    
    # Manual model download
    from transformers import AutoTokenizer
-   tokenizer = AutoTokenizer.from_pretrained("Tencent-Hunyuan/Hunyuan-MT")
+   tokenizer = AutoTokenizer.from_pretrained("./weight/Hunyuan-MT-Chimera-7B-fp8", local_files_only=True)
    ```
 
 3. **Dataset Loading Problems**

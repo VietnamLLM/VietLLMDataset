@@ -1,6 +1,6 @@
 """
-Hunyuan-MT Translation Module
-Using Tencent-Hunyuan/Hunyuan-MT for English to Vietnamese translation
+Hunyuan-MT-Chimera-7B-fp8 Translation Module
+Using local Hunyuan-MT-Chimera-7B-fp8 model for English to Vietnamese translation
 """
 
 import torch
@@ -15,21 +15,21 @@ logger = logging.getLogger(__name__)
 
 class HunyuanTranslator:
     """
-    Hunyuan-MT Translator for English to Vietnamese translation
+    Hunyuan-MT-Chimera-7B-fp8 Translator for English to Vietnamese translation
     """
     
     def __init__(
         self,
-        model_name: str = "Tencent-Hunyuan/Hunyuan-MT",
+        model_name: str = "./weight/Hunyuan-MT-Chimera-7B-fp8",
         device: Optional[str] = None,
         batch_size: int = 4,
         max_length: int = 512
     ):
         """
-        Initialize the Hunyuan-MT translator
+        Initialize the Hunyuan-MT-Chimera-7B-fp8 translator
         
         Args:
-            model_name: The model name/path
+            model_name: The local model path (default: ./weight/Hunyuan-MT-Chimera-7B-fp8)
             device: Device to run the model on (auto-detect if None)
             batch_size: Batch size for translation
             max_length: Maximum sequence length
@@ -50,20 +50,22 @@ class HunyuanTranslator:
         self._load_model()
     
     def _load_model(self):
-        """Load the Hunyuan-MT model and tokenizer"""
+        """Load the Hunyuan-MT-Chimera-7B-fp8 model and tokenizer from local path"""
         try:
-            logger.info(f"Loading model: {self.model_name}")
+            logger.info(f"Loading local model: {self.model_name}")
             
-            # Load tokenizer
+            # Load tokenizer from local path
             self.tokenizer = AutoTokenizer.from_pretrained(
                 self.model_name,
-                trust_remote_code=True
+                trust_remote_code=True,
+                local_files_only=True
             )
             
-            # Load model
+            # Load model from local path
             self.model = AutoModelForSeq2SeqLM.from_pretrained(
                 self.model_name,
                 trust_remote_code=True,
+                local_files_only=True,
                 torch_dtype=torch.float16 if self.device == "cuda" else torch.float32
             )
             
@@ -71,7 +73,7 @@ class HunyuanTranslator:
             self.model.to(self.device)
             self.model.eval()
             
-            logger.info("Model loaded successfully")
+            logger.info("Local Hunyuan-MT-Chimera-7B-fp8 model loaded successfully")
             
         except Exception as e:
             logger.error(f"Error loading model: {e}")

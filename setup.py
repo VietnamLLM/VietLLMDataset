@@ -11,7 +11,7 @@ setup(
     version="0.1.0",
     author="VietnamLLM Team",
     author_email="contact@vietnamllm.org",
-    description="Vietnamese Dataset Translation Project using Hunyuan-MT",
+    description="Vietnamese Dataset Translation Project using local Hunyuan-MT-Chimera-7B-fp8",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/VietnamLLM/VietLLMDataset",

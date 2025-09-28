@@ -1,10 +1,11 @@
 # VietLLMDataset
 
-A comprehensive template project for translating English datasets (GPQA, AIME 2025) to Vietnamese using the **Tencent-Hunyuan/Hunyuan-MT** model. This project provides a complete pipeline for dataset loading, translation, and result management.
+A comprehensive template project for translating English datasets (GPQA, AIME 2025) to Vietnamese using the **Hunyuan-MT-Chimera-7B-fp8** model loaded from local weights. This project provides a complete pipeline for dataset loading, translation, and result management using locally stored model weights.
 
 ## 🚀 Features
 
-- **Hunyuan-MT Integration**: Easy-to-use wrapper for Tencent-Hunyuan/Hunyuan-MT translation model
+- **Local Hunyuan-MT-Chimera-7B-fp8 Integration**: Easy-to-use wrapper for local Hunyuan-MT-Chimera-7B-fp8 translation model
+- **No Internet Required**: Uses local model weights, no downloading from Hugging Face required
 - **Multiple Dataset Support**: Built-in loaders for GPQA and AIME datasets
 - **Batch Processing**: Efficient batch translation with progress tracking
 - **Flexible Pipeline**: Modular design for easy customization and extension
@@ -18,6 +19,7 @@ A comprehensive template project for translating English datasets (GPQA, AIME 20
 - PyTorch 2.0+
 - Transformers 4.30+
 - CUDA-compatible GPU (recommended) or CPU
+- Local Hunyuan-MT-Chimera-7B-fp8 model weights
 
 ## 🛠️ Installation
 
@@ -27,12 +29,17 @@ git clone https://github.com/VietnamLLM/VietLLMDataset.git
 cd VietLLMDataset
 ```
 
-2. **Install dependencies:**
+2. **Set up model weights:**
+   - Download the Hunyuan-MT-Chimera-7B-fp8 model weights
+   - Place them in the `weight/Hunyuan-MT-Chimera-7B-fp8/` directory
+   - The directory should contain files like `config.json`, `model.safetensors.index.json`, `tokenizer.json`, etc.
+
+3. **Install dependencies:**
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Install the package (optional):**
+4. **Install the package (optional):**
 ```bash
 pip install -e .
 ```
@@ -44,7 +51,7 @@ VietLLMDataset/
 ├── src/
 │   ├── translation/
 │   │   ├── __init__.py
-│   │   └── hunyuan_translator.py     # Hunyuan-MT wrapper
+│   │   └── hunyuan_translator.py     # Hunyuan-MT-Chimera-7B-fp8 wrapper
 │   ├── datasets/
 │   │   ├── __init__.py
 │   │   ├── gpqa_loader.py           # GPQA dataset loader
@@ -53,6 +60,12 @@ VietLLMDataset/
 │       ├── __init__.py
 │       ├── logging_config.py        # Logging configuration
 │       └── translation_utils.py     # Pipeline utilities
+├── weight/
+│   └── Hunyuan-MT-Chimera-7B-fp8/   # Local model weights directory
+│       ├── config.json
+│       ├── model.safetensors.index.json
+│       ├── tokenizer.json
+│       └── ...                     # Other model files
 ├── examples/
 │   ├── simple_translation_demo.py   # Basic demo
 │   ├── translate_gpqa.py           # GPQA translation script
@@ -66,7 +79,7 @@ VietLLMDataset/
 
 ### 1. Simple Translation Demo
 
-Test the Hunyuan-MT model with sample texts:
+Test the Hunyuan-MT-Chimera-7B-fp8 model with sample texts:
 
 ```bash
 python examples/simple_translation_demo.py
@@ -97,7 +110,7 @@ from src.translation.hunyuan_translator import HunyuanTranslator
 
 # Initialize translator
 translator = HunyuanTranslator(
-    model_name="Tencent-Hunyuan/Hunyuan-MT",
+    model_name="./weight/Hunyuan-MT-Chimera-7B-fp8",
     batch_size=4,
     max_length=512
 )
@@ -153,7 +166,7 @@ Edit `config.yaml` to customize settings:
 
 ```yaml
 model:
-  name: "Tencent-Hunyuan/Hunyuan-MT"
+  name: "./weight/Hunyuan-MT-Chimera-7B-fp8"
   batch_size: 4
   max_length: 512
 
@@ -265,7 +278,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🙏 Acknowledgments
 
-- [Tencent-Hunyuan/Hunyuan-MT](https://huggingface.co/Tencent-Hunyuan/Hunyuan-MT) for the translation model
+- [Hunyuan-MT-Chimera-7B-fp8](https://huggingface.co/Tencent/Hunyuan-MT-Chimera-7B-fp8) for the translation model
 - [Hugging Face](https://huggingface.co/) for the datasets and transformers library
 - [VietnamLLM](https://github.com/VietnamLLM) community for Vietnamese NLP resources
 
