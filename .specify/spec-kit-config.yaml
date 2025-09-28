@@ -1,0 +1,70 @@
+# Spec-Kit Configuration for VietLLMDataset
+
+project:
+  name: "VietLLMDataset"
+  version: "1.0.0"
+  description: "A comprehensive template project for translating English datasets (GPQA, AIME 2025) to Vietnamese using the Hunyuan-MT-Chimera-7B-fp8 model"
+  repository: "https://github.com/VietnamLLM/VietLLMDataset"
+  license: "MIT"
+
+specification:
+  business_spec: ".specify/spec.md"
+  technical_plan: ".specify/plan.md"
+  implementation_tasks: ".specify/tasks.md"
+  data_model: ".specify/data-model.md"
+  research_notes: ".specify/research.md"
+  api_contracts: ".specify/contracts/api-contracts.md"
+
+structure:
+  directories:
+    - ".specify/"
+    - ".specify/contracts/"
+    - ".specify/data-model/"
+    - ".specify/research/"
+    - "src/"
+    - "examples/"
+    - "weight/"
+
+  files:
+    - ".specify/spec.md"
+    - ".specify/plan.md"
+    - ".specify/tasks.md"
+    - ".specify/data-model.md"
+    - ".specify/research.md"
+    - ".specify/contracts/api-contracts.md"
+    - ".specify/README.md"
+    - "README.md"
+    - "requirements.txt"
+    - "config.yaml"
+
+metadata:
+  created: "2024"
+  last_updated: "2024"
+  status: "active"
+  team: "VietnamLLM"
+  contact: "contact@vietnamllm.org"
+
+validation:
+  required_files:
+    - ".specify/spec.md"
+    - ".specify/plan.md"
+    - ".specify/tasks.md"
+    - ".specify/data-model.md"
+    - ".specify/research.md"
+    - ".specify/contracts/api-contracts.md"
+  
+  required_directories:
+    - ".specify/"
+    - ".specify/contracts/"
+    - ".specify/data-model/"
+    - ".specify/research/"
+    - "src/"
+    - "examples/"
+
+  file_checks:
+    - ".specify/spec.md": "Business specification document"
+    - ".specify/plan.md": "Technical plan document"
+    - ".specify/tasks.md": "Implementation tasks document"
+    - ".specify/data-model.md": "Data model specification"
+    - ".specify/research.md": "Research notes and decisions"
+    - ".specify/contracts/api-contracts.md": "API contracts specification"
